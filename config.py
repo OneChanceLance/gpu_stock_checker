@@ -18,6 +18,10 @@ NEWEGG_5080_THRESHOLD = 2150
 BESTBUY_5090_THRESHOLD = 4500
 BESTBUY_5080_THRESHOLD = 2150
 
+AMAZON_SCANNER = True
+BESTBUY_SCANNER = False
+NEWEGG_SCANNER = True
+
 # ✅ **Randomized Human-Like Delays**
 def human_delay():
     return random.randint(1, 2)  # Random delay between 2.5s - 7.5s

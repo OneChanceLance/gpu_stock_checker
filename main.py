@@ -1,5 +1,6 @@
 import csv
 import time
+
 from selenium.webdriver.edge.service import Service
 from selenium.webdriver.edge.options import Options
 from selenium import webdriver
@@ -7,7 +8,7 @@ from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from amazon_checker import check_amazon_stock
 from bestbuy_checker import check_bestbuy_stock
 from newegg_checker import check_newegg_stock
-from config import stock_check_interval, get_random_user_agent
+from config import AMAZON_SCANNER, BESTBUY_SCANNER, NEWEGG_SCANNER, stock_check_interval, get_random_user_agent
 
 # ✅ **Configure Edge WebDriver for Fast Stock Checking**
 def init_driver():
@@ -48,11 +49,11 @@ def check_stock(driver):
     for item in product_list:
         site, url = item["website"], item["url"]
         
-        if site == "amazon":
+        if AMAZON_SCANNER and site == "amazon":
             check_amazon_stock(driver, url)
-        elif site == "bestbuy":
+        elif BESTBUY_SCANNER and site == "bestbuy":
             check_bestbuy_stock(driver, url)
-        elif site == "newegg":
+        elif NEWEGG_SCANNER and site == "newegg":
             check_newegg_stock(driver, url)
 
         # ✅ **Fastest possible transition to next product**
