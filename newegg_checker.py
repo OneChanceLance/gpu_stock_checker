@@ -9,10 +9,10 @@ from discord_notifier import send_stock_notification
 def wait_for_captcha(driver):
     print("Scanning for Captcha...")
     while True:
-        print("⚠️ CAPTCHA detected. Waiting for it to disappear...")
         try:
             captcha_text = driver.find_element(By.XPATH, "//h1[contains(text(), 'Human?')]")
             if captcha_text.is_displayed():
+                print("⚠️ CAPTCHA detected. Waiting for it to disappear...")
                 time.sleep(10)  # Wait and retry
             else:
                 break  # Continue if CAPTCHA disappears
