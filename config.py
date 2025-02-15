@@ -9,6 +9,15 @@ DISCORD_INSTOCK_WEBHOOK_URL = "https://discord.com/api/webhooks/1338875358350540
 PRICE_THRESHOLD = 4500  # Default for all GPUs
 RTX_5080_THRESHOLD = 2150  # Special threshold for RTX 5080 GPUs
 
+AMAZON_5090_THRESHOLD = 4500
+AMAZON_5080_THRESHOLD = 2150
+
+NEWEGG_5090_THRESHOLD = 4500
+NEWEGG_5080_THRESHOLD = 2150
+
+BESTBUY_5090_THRESHOLD = 4500
+BESTBUY_5080_THRESHOLD = 2150
+
 # ✅ **Randomized Human-Like Delays**
 def human_delay():
     return random.randint(1, 2)  # Random delay between 2.5s - 7.5s
