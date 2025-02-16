@@ -1,6 +1,5 @@
 import csv
 import time
-
 from selenium.webdriver.edge.service import Service
 from selenium.webdriver.edge.options import Options
 from selenium import webdriver

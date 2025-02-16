@@ -8,13 +8,15 @@ from discord_notifier import send_stock_notification
 # ✅ **Newegg Canada - Detect & Handle CAPTCHA**
 def wait_for_captcha(driver):
     print("Scanning for Captcha...")
-    try:
-        captcha_text = driver.find_element(By.XPATH, "//h1[contains(text(), 'Human?')]")
-        if captcha_text.is_displayed():
-            print("⚠️ CAPTCHA detected. Waiting for it to disappear...")
-            time.sleep(10)  # Wait and retry
-    except NoSuchElementException:
-        return
+    while True:
+        try:
+            captcha_text = driver.find_element(By.XPATH, "//h1[contains(text(), 'Human?')]")
+            if captcha_text.is_displayed():
+                time.sleep(2)  # Wait and retry
+            else:
+                break  # Continue if CAPTCHA disappears
+        except NoSuchElementException:
+            break  # No CAPTCHA, continue execution
 
 # ✅ **Newegg Canada - Get Price**
 def get_newegg_price(driver):
