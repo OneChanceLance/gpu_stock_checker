@@ -76,9 +76,9 @@ This will install all the necessary Python libraries.
    ```
 3. Clone the repository using Git:  
    ```
-   git clone [YOUR_GITHUB_REPO_URL] .
+   git clone https://github.com/OneChanceLance/gpu_stock_checker/
    ```
-   (Replace `[YOUR_GITHUB_REPO_URL]` with the actual GitHub repository URL.)  
+ 
 
 4. When updates are available, you can run:  
    ```
