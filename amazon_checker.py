@@ -18,7 +18,7 @@ def get_amazon_price(driver):
 def check_amazon_stock(driver, product_url):
     print(f"🔍 Checking stock at Amazon: {product_url}")
     driver.get(product_url)
-    time.sleep(human_delay)
+    time.sleep(human_delay())
     product_name = driver.title.split(" : Amazon")[0]
     price_threshold = AMAZON_5080_THRESHOLD if "5080" in product_name else AMAZON_5090_THRESHOLD
 
