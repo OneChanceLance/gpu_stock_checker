@@ -28,6 +28,11 @@ def init_driver():
 
     # ✅ **Disable WebRTC (Prevents IP Leak)**
     options.add_experimental_option("prefs", {"webrtc.ip_handling_policy": "disable_non_proxied_udp"})
+    options.add_argument("--disable-gpu")  # Disables hardware acceleration
+    options.add_argument("--no-sandbox")  # Helps prevent crashes
+    options.add_argument("--disable-software-rasterizer")  # Ensures GPU isn't used
+    options.add_argument("--log-level=3")  # Suppresses minor log messages
+   #  options.add_argument("--headless=new")
 
     driver = webdriver.Edge(service=Service(EdgeChromiumDriverManager().install()), options=options)
 
