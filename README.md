@@ -84,7 +84,7 @@ This will install all the necessary Python libraries.
    ```
    git pull
    ```
-   to update your local files.  
+   in VSC Terminal to update your local files.  
 
 ---
 
