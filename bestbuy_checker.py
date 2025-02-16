@@ -2,7 +2,7 @@ import time
 import requests
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
-from config import DISCORD_CART_WEBHOOK_URL, PRICE_THRESHOLD, RTX_5080_THRESHOLD, human_delay
+from config import DISCORD_CART_WEBHOOK_URL, BESTBUY_5090_THRESHOLD, BESTBUY_5080_THRESHOLD, human_delay
 from bestbuy_checkout import checkout_bestbuy
 from discord_notifier import send_stock_notification
 
@@ -20,10 +20,9 @@ def get_bestbuy_price(driver):
 def check_bestbuy_stock(driver, product_url):
     print(f"🔍 Checking stock at Best Buy: {product_url}")
     driver.get(product_url)
-    time.sleep(human_delay())
 
     product_name = driver.title.split(" - Best Buy")[0]
-    price_threshold = RTX_5080_THRESHOLD if "5080" in product_name else PRICE_THRESHOLD
+    price_threshold = BESTBUY_5080_THRESHOLD if "5080" in product_name else BESTBUY_5090_THRESHOLD
 
     try:
         container = driver.find_element(By.CLASS_NAME, "addToCartButtonContainer_3kNch")

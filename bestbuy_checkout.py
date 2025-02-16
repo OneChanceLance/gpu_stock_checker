@@ -7,7 +7,6 @@ from discord_notifier import send_cart_notification, send_purchase_notification
 # ✅ **Best Buy - Checkout Process**
 def checkout_bestbuy(driver, product_url, product_name):
     driver.get(product_url)
-    time.sleep(human_delay())
 
     try:
         add_to_cart_btn = driver.find_element(By.XPATH, "//button[@data-automation='addToCartButton']")

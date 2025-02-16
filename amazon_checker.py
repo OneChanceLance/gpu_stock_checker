@@ -1,7 +1,7 @@
 import time
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
-from config import PRICE_THRESHOLD, RTX_5080_THRESHOLD, human_delay
+from config import AMAZON_5090_THRESHOLD, AMAZON_5080_THRESHOLD, human_delay
 from amazon_checkout import checkout_amazon
 from discord_notifier import send_stock_notification
 
@@ -19,7 +19,7 @@ def check_amazon_stock(driver, product_url):
     print(f"🔍 Checking stock at Amazon: {product_url}")
     driver.get(product_url)
     product_name = driver.title.split(" : Amazon")[0]
-    price_threshold = RTX_5080_THRESHOLD if "5080" in product_name else PRICE_THRESHOLD
+    price_threshold = AMAZON_5080_THRESHOLD if "5080" in product_name else AMAZON_5090_THRESHOLD
 
     gpu_price = get_amazon_price(driver)
 

@@ -1,23 +1,20 @@
 import time
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
-from config import DISCORD_CART_WEBHOOK_URL, PRICE_THRESHOLD, RTX_5080_THRESHOLD, human_delay
+from config import DISCORD_CART_WEBHOOK_URL, NEWEGG_5090_THRESHOLD, NEWEGG_5080_THRESHOLD, human_delay
 from newegg_checkout import checkout_newegg
 from discord_notifier import send_stock_notification
 
 # ✅ **Newegg Canada - Detect & Handle CAPTCHA**
 def wait_for_captcha(driver):
     print("Scanning for Captcha...")
-    while True:
-        try:
-            captcha_text = driver.find_element(By.XPATH, "//h1[contains(text(), 'Human?')]")
-            if captcha_text.is_displayed():
-                print("⚠️ CAPTCHA detected. Waiting for it to disappear...")
-                time.sleep(10)  # Wait and retry
-            else:
-                break  # Continue if CAPTCHA disappears
-        except NoSuchElementException:
-            break  # No CAPTCHA, continue execution
+    try:
+        captcha_text = driver.find_element(By.XPATH, "//h1[contains(text(), 'Human?')]")
+        if captcha_text.is_displayed():
+            print("⚠️ CAPTCHA detected. Waiting for it to disappear...")
+            time.sleep(10)  # Wait and retry
+    except NoSuchElementException:
+        return
 
 # ✅ **Newegg Canada - Get Price**
 def get_newegg_price(driver):
@@ -35,7 +32,7 @@ def check_newegg_stock(driver, product_url):
     wait_for_captcha(driver)
 
     product_name = driver.title.split(" - Newegg")[0]
-    price_threshold = RTX_5080_THRESHOLD if "5080" in product_name else PRICE_THRESHOLD
+    price_threshold = NEWEGG_5080_THRESHOLD if "5080" in product_name else NEWEGG_5090_THRESHOLD
 
     try:
         # ✅ Look for the "Add to Cart" button
