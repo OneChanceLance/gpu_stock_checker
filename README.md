@@ -72,11 +72,11 @@ This will install all the necessary Python libraries.
 1. Open **Git Bash**.  
 2. Navigate to your **Desktop** using the command:  
    ```
-   cd Desktop/gpu_stock_checker
+   cd C:/Users/YOURPROFILE/Desktop/gpu_stock_checker
    ```
 3. Clone the repository using Git:  
    ```
-   git clone https://github.com/OneChanceLance/gpu_stock_checker/
+   git clone https://github.com/OneChanceLance/gpu_stock_checker.git
    ```
  
 
