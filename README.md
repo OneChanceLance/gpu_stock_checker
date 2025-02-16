@@ -69,7 +69,7 @@ This will install all the necessary Python libraries.
 ---
 
 ## **5. Clone the Repository and Get the Script Files**  
-1. Open **Command Prompt** (`Win + R`, type `cmd`, and press Enter).  
+1. Open **Git Bash** (`Win + R`, type `cmd`, and press Enter).  
 2. Navigate to your **Desktop** using the command:  
    ```
    cd Desktop/gpu_stock_checker
