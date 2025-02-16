@@ -143,5 +143,3 @@ This will install all the necessary Python libraries.
 - Restart your computer if changes to environment variables don’t take effect.  
 
 ---
-
-You’re all set! 🚀 Happy tracking!
