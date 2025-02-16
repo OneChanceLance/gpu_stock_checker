@@ -12,7 +12,7 @@ def wait_for_captcha(driver):
         try:
             captcha_text = driver.find_element(By.XPATH, "//h1[contains(text(), 'Human?')]")
             if captcha_text.is_displayed():
-                time.sleep(2)  # Wait and retry
+                time.sleep(10)  # Wait and retry
             else:
                 break  # Continue if CAPTCHA disappears
         except NoSuchElementException:
