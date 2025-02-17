@@ -7,7 +7,7 @@ from webdriver_manager.microsoft import EdgeChromiumDriverManager
 from amazon_checker import check_amazon_stock
 from bestbuy_checker import check_bestbuy_stock
 from newegg_checker import check_newegg_stock
-from config import AMAZON_SCANNER, BESTBUY_SCANNER, NEWEGG_SCANNER, stock_check_interval, get_random_user_agent
+from config import AMAZON_US_SCANNER, AMAZON_CA_SCANNER, BESTBUY_SCANNER, NEWEGG_SCANNER, stock_check_interval, get_random_user_agent
 
 # ✅ **Configure Edge WebDriver for Fast Stock Checking**
 def init_driver():
@@ -55,7 +55,9 @@ def check_stock(driver):
     for item in product_list:
         site, url = item["website"], item["url"]
         
-        if AMAZON_SCANNER and site == "amazon":
+        if AMAZON_US_SCANNER and site == "amazon":
+            check_amazon_stock(driver, url)
+        elif AMAZON_CA_SCANNER and site == "amazon.ca":
             check_amazon_stock(driver, url)
         elif BESTBUY_SCANNER and site == "bestbuy":
             check_bestbuy_stock(driver, url)
