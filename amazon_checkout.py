@@ -34,7 +34,7 @@ def checkout_amazon(driver, product_url, product_name):
 
         except Exception as e:
             print(f"❌ Error during Amazon checkout: {e}")
-    elif "amazon" in product_url:
+    elif "amazon.com" in product_url:
         try:
             add_to_cart_btn = driver.find_element(By.ID, "add-to-cart-button")
             add_to_cart_btn.click()
