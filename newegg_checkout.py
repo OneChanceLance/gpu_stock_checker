@@ -22,7 +22,7 @@ def checkout_newegg(driver, product_url, product_name, cvv_code):
         proceed_to_checkout_btn.click()
         print("✅ Proceeding to checkout...")
 
-        time.sleep(1)
+        time.sleep(0.5)
 
         try:
             cvv_input = driver.find_element(By.NAME, "cvvNumber")

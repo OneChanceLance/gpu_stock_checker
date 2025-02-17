@@ -30,6 +30,7 @@ def init_driver():
     options.add_experimental_option("prefs", {"webrtc.ip_handling_policy": "disable_non_proxied_udp"})
     options.add_argument("--disable-gpu")  # Prevents GPU-based bot detection
     options.add_argument("--disable-dev-shm-usage")  # Avoids shared memory detection
+    options.add_argument("--enable-unsafe-swiftshade")
     options.add_argument("--disable-web-security")  # Prevents anti-bot security checks
     options.add_argument("--disable-site-isolation-trials")  # Prevents site isolation tracking
     options.add_argument("--no-sandbox")  # Prevents browser sandbox detection
