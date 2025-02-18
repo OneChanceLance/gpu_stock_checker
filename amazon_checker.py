@@ -40,6 +40,7 @@ def check_amazon_stock(driver, product_url):
                 print(f"❌ Price too high (${gpu_price} > ${price_threshold}). Skipping purchase.")
         else:
             print(f"🔴 Out of stock at Amazon: {product_url}")
+        time.sleep(1)
     elif "amazon.com" in product_url:
         price_threshold = AMAZON_USA_5080_THRESHOLD if "5080" in product_name else AMAZON_USA_5090_THRESHOLD
         
@@ -57,4 +58,4 @@ def check_amazon_stock(driver, product_url):
                 print(f"❌ Price too high (${gpu_price} > ${price_threshold}). Skipping purchase.")
         else:
             print(f"🔴 Out of stock at Amazon: {product_url}")
-            time.sleep(human_delay())
+        time.sleep(1)

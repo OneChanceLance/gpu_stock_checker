@@ -30,7 +30,7 @@ def get_newegg_price(driver):
 
 # ✅ **Newegg Canada - Check Stock & Notify**
 def check_newegg_stock(driver, product_url):
-    print(f"🔍 Checking stock at Newegg: {product_url}")
+    print(f"🔍  Checking stock at Newegg: {product_url}")
     driver.get(product_url)
     wait_for_captcha(driver)
     # solve_text_captcha(driver)
@@ -58,3 +58,4 @@ def check_newegg_stock(driver, product_url):
 
     except NoSuchElementException:
         print(f"🔴 Out of stock at Newegg Canada: {product_url}")
+    time.sleep(1)
