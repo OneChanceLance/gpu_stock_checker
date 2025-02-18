@@ -44,7 +44,7 @@ def checkout_newegg(driver, product_url, product_name, cvv_code):
             print("ℹ️ No 'Use This Payment Method' button found. Skipping to order placement...")
 
         place_order_btn = driver.find_element(By.XPATH, "//button[contains(text(), 'Place Order')]")
-        # driver.execute_script("arguments[0].click();", place_order_btn)
+        driver.execute_script("arguments[0].click();", place_order_btn)
         print("✅ Order Placed Successfully!")
         send_purchase_notification("Newegg Canada", product_name, product_url)
     
