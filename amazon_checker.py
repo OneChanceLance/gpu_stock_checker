@@ -1,6 +1,7 @@
 import time
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
+from captcha_checker import is_captcha_present, solve_captcha
 from config import AMAZON_USA_5080_THRESHOLD, AMAZON_USA_5090_THRESHOLD, AMAZON_CA_5090_THRESHOLD, AMAZON_CA_5080_THRESHOLD, human_delay
 from amazon_checkout import checkout_amazon
 from discord_notifier import send_stock_notification
@@ -16,11 +17,12 @@ def get_amazon_price(driver):
 
 # ✅ **Amazon - Check Stock & Notify**
 def check_amazon_stock(driver, product_url):
-
     print(f"🔍 Checking stock at Amazon: {product_url}")
     driver.get(product_url)
-    time.sleep(human_delay())
     product_name = driver.title.split(" : Amazon")[0]
+    while is_captcha_present(driver):
+        if not solve_captcha(driver):
+            time.sleep(2)  # Wait before retrying
     if "amazon.ca" in product_url:
         price_threshold = AMAZON_CA_5080_THRESHOLD if "5080" in product_name else AMAZON_CA_5090_THRESHOLD
         
@@ -55,3 +57,4 @@ def check_amazon_stock(driver, product_url):
                 print(f"❌ Price too high (${gpu_price} > ${price_threshold}). Skipping purchase.")
         else:
             print(f"🔴 Out of stock at Amazon: {product_url}")
+            time.sleep(human_delay())

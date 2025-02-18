@@ -1,5 +1,6 @@
 import time
 from selenium.webdriver.common.by import By
+# from captcha_checker import solve_text_captcha
 from selenium.common.exceptions import NoSuchElementException
 from config import DISCORD_CART_WEBHOOK_URL, NEWEGG_5090_THRESHOLD, NEWEGG_5080_THRESHOLD, human_delay
 from newegg_checkout import checkout_newegg
@@ -32,7 +33,7 @@ def check_newegg_stock(driver, product_url):
     print(f"🔍 Checking stock at Newegg: {product_url}")
     driver.get(product_url)
     wait_for_captcha(driver)
-
+    # solve_text_captcha(driver)
     product_name = driver.title.split(" - Newegg")[0]
     price_threshold = NEWEGG_5080_THRESHOLD if "5080" in product_name else NEWEGG_5090_THRESHOLD
 

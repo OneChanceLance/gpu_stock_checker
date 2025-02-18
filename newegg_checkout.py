@@ -22,7 +22,7 @@ def checkout_newegg(driver, product_url, product_name, cvv_code):
         proceed_to_checkout_btn.click()
         print("✅ Proceeding to checkout...")
 
-        time.sleep(1)
+        time.sleep(2)
 
         try:
             cvv_input = driver.find_element(By.NAME, "cvvNumber")
@@ -33,7 +33,7 @@ def checkout_newegg(driver, product_url, product_name, cvv_code):
         except NoSuchElementException:
             print("❌ Could not find CVV input field.")
 
-        time.sleep(0.5)
+        time.sleep(1)
 
         try:
             use_payment_btn = driver.find_element(By.XPATH, "//button[contains(text(), 'Use This Payment Method')]")
