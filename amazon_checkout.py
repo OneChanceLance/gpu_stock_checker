@@ -79,11 +79,24 @@ def checkout_amazon(driver, product_url, product_name):
 
             except NoSuchElementException:
                 print("ℹ️ No Prime trial popup detected. Continuing checkout...")
+            try:
+                # ✅ Wait for a max of 3 seconds for the 'Next Step' button to appear
+                next_step_button = WebDriverWait(driver, 3).until(
+                    EC.presence_of_element_located((By.ID, "prime-panel-fallback-button"))
+                )
+                driver.execute_script("arguments[0].click();", next_step_button)
+                print("✅ Clicked 'Next Step' to bypass Prime subscription prompt.")
+            except:
+                print("✅ No Prime subscription prompt detected. Continuing checkout.")
 
-            place_order_btn = driver.find_element(By.ID, "placeOrder")
-            driver.execute_script("arguments[0].click();", place_order_btn)
-            print("✅ Order Placed Successfully at Amazon US!")
-            send_purchase_notification("Amazon", product_name, product_url)
-
+            try:
+                place_order_btn = WebDriverWait(driver, 5).until(
+                    EC.presence_of_element_located((By.ID, "placeOrder"))
+                )
+                driver.execute_script("arguments[0].click();", place_order_btn)
+                print("✅ Order Placed Successfully at Amazon US!")
+                send_purchase_notification("Amazon", product_name, product_url)
+            except:
+                print("❌ Failed to checkout.")
         except Exception as e:
             print(f"❌ Error during Amazon checkout: {e}")
