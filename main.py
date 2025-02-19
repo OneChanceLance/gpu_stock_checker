@@ -19,8 +19,8 @@ def init_driver():
 
 
     # ✅ **User-Agent Spoofing**
-    user_agent = get_random_user_agent()
-    options.add_argument(f"user-agent={user_agent}")
+    #user_agent = get_random_user_agent()
+    #options.add_argument(f"user-agent={user_agent}")
 
     # ✅ **Anti-Bot Evasion Flags**
     options.add_argument("--disable-blink-features=AutomationControlled")
@@ -31,8 +31,8 @@ def init_driver():
     options.add_argument("--disable-gpu")  # Prevents GPU-based bot detection
     options.add_argument("--disable-dev-shm-usage")  # Avoids shared memory detection
     options.add_argument("--disable-web-security")  # Prevents anti-bot security checks
-    options.add_argument("--disable-site-isolation-trials")  # Prevents site isolation tracking
-    # options.add_argument("--no-sandbox")  # Prevents browser sandbox detection
+    #options.add_argument("--disable-site-isolation-trials")  # Prevents site isolation tracking
+    options.add_argument("--no-sandbox")  # Prevents browser sandbox detection
 
    #  options.add_argument("--headless=new")
 
