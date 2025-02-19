@@ -7,41 +7,6 @@ from config import AMAZON_USA_5080_THRESHOLD, AMAZON_USA_5090_THRESHOLD, AMAZON_
 from amazon_checkout import checkout_amazon
 from discord_notifier import send_stock_notification
 from selenium.webdriver.support import expected_conditions as EC
-from captcha_solver import capture_captcha, solve_captcha  # Import Captcha Functions
-
-
-# ✅ **Function to Detect & Solve CAPTCHA**
-def handle_amazon_captcha(driver):
-    try:
-        # ✅ Check if captcha is present
-        captcha_image = WebDriverWait(driver, 3).until(
-            EC.presence_of_element_located((By.XPATH, "//img[contains(@src, 'captcha')]"))
-        )
-        print("⚠️ CAPTCHA detected. Solving...")
-
-        # ✅ Capture image and get base64 encoding
-        base64_captcha = capture_captcha(driver, captcha_image)
-
-        # ✅ Solve captcha using 2Captcha
-        solved_text = solve_captcha(base64_captcha)
-
-        if solved_text:
-            # ✅ Enter the solved text into the captcha input field
-            captcha_input = driver.find_element(By.ID, "captchacharacters")
-            captcha_input.send_keys(solved_text)
-            print(f"✅ Entered CAPTCHA: {solved_text}")
-
-            # ✅ Submit captcha
-            submit_button = driver.find_element(By.XPATH, "//button[@type='submit']")
-            submit_button.click()
-            print("🚀 Submitted CAPTCHA! Continuing checkout...")
-
-            time.sleep(3)  # Allow page to reload
-        else:
-            print("❌ Failed to solve CAPTCHA. Retrying...")
-
-    except:
-        print("✅ No CAPTCHA detected.")
 
 # ✅ **Amazon - Get Price**
 def get_amazon_price(driver):
