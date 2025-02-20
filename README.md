@@ -45,7 +45,7 @@ Python is required to run the script, and **pip** is a package manager for insta
 Open **Command Prompt** and run the following command:  
 
 ```
-pip install selenium webdriver-manager requests beautifulsoup4
+pip install selenium webdriver-manager requests beautifulsoup4 pillow
 ```
 
 This will install all the necessary Python libraries.
